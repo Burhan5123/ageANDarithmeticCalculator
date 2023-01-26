@@ -16,10 +16,10 @@
         <form method="post" action="arithmetic">
             First: <input type="text" name="first" value="${first}"><br>
             Second: <input type="text" name="second" value="${second}"><br>
-            <input type="submit" value="+" name="+">
-            <input type="submit" value="-" name="-">
-            <input type="submit" value="*" name="*">
-            <input type="submit" value="%" name="%">
+            <input type="submit" value="+" name="operator">
+            <input type="submit" value="-" name="operator">
+            <input type="submit" value="*" name="operator">
+            <input type="submit" value="%" name="operator">
                        
         </form>
             

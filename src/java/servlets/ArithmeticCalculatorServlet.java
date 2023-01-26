@@ -5,7 +5,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  *
  * @author burha
@@ -25,12 +24,10 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         
         String firstString = request.getParameter("first");
         String secondString = request.getParameter("second");
-        String addition = request.getParameter("+");
-        String subtraction = request.getParameter("-");
-        String multiplication = request.getParameter("*");
-        String division = request.getParameter("%");
+        String operator = request.getParameter("operator");
         
-        if (firstString == null || firstString.equals("") || secondString == null || secondString.equals("")){
+        
+        if ((firstString == null || firstString.equals("")) && (secondString == null || secondString.equals(""))){
             
             request.setAttribute("message", "---");
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
@@ -40,27 +37,31 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         
         int first = Integer.parseInt(firstString);
         int second = Integer.parseInt(secondString);
-        double answer = 0;
+        int answer = 0;
         request.setAttribute("first", first);
         request.setAttribute("second", second);
         
         
-        if(addition.equals("+")){
+        
+        if(operator.equals("+")){
             answer = first + second;
         
         }
-        if(subtraction.equals("-")){
+        if(operator.equals("-")){
             answer = first - second;
         
         }
-        if(multiplication.equals("*")){
+        if(operator.equals("*")){
             answer = first * second;
         
         }
-        if(division.equals("%")){
+        if(operator.equals("%")){
             answer = first / second;
         
         }
+
+        request.setAttribute("message", "Result: " + answer);
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
         
      
     }
