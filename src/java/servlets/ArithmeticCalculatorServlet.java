@@ -34,12 +34,12 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
                 return;
             
         }
-        
+        try{
         int first = Integer.parseInt(firstString);
         int second = Integer.parseInt(secondString);
         int answer = 0;
-        request.setAttribute("first", first);
-        request.setAttribute("second", second);
+        request.setAttribute("first", firstString);
+        request.setAttribute("second", secondString);
         
         
         
@@ -56,12 +56,21 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         
         }
         if(operator.equals("%")){
-            answer = first / second;
+            answer = first % second;
         
         }
 
         request.setAttribute("message", "Result: " + answer);
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+        }
+        
+        catch(Exception e){
+            
+        request.setAttribute("first", firstString);
+        request.setAttribute("second", secondString);
+        request.setAttribute("message", "Result: invalid");
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+        }
         
      
     }
